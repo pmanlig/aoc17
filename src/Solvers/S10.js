@@ -1,5 +1,6 @@
 //import React from 'react';
 import Solver from './Solver';
+import KnotHash from '../util/KnotHash';
 
 const hex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
 
@@ -44,7 +45,8 @@ export class S10a extends Solver {
 			hash.push(acc);
 		}
 		let hashStr = hash.map(n => hex[n >>> 4] + hex[n & 15]).join('');
-		this.setState({ solution: `Checksum: ${s1.numbers[0] * s1.numbers[1]}\nHash: ${hashStr}` });
+		let h = KnotHash.calculate(input);
+		this.setState({ solution: `Checksum: ${s1.numbers[0] * s1.numbers[1]}\nHash: ${hashStr}\nHash: ${h}` });
 	}
 }
 
